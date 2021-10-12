@@ -89,12 +89,6 @@ public class UploadController {
 
     @GetMapping("/progress")
     public ResponseEntity<Uploads> getProgress() {
-        System.out.println("Got in " + System.currentTimeMillis());
-        Uploads u = new Uploads(uploadTrackerMap.values().stream().filter(tracker -> tracker.inProgress()).map(
-            tracker -> new Upload(tracker.getId(), tracker.getpContentLength(), tracker.getpBytesRead()))
-            .collect(Collectors.toList()));
-            System.out.println("Got out " + System.currentTimeMillis());
-  
         return ResponseEntity.ok()
                 .body(new Uploads(uploadTrackerMap.values().stream().filter(tracker -> tracker.inProgress()).map(
                         tracker -> new Upload(tracker.getId(), tracker.getpContentLength(), tracker.getpBytesRead()))
